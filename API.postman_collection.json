@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "b5317eea-68be-422b-acef-64477661c3db",
+		"name": "Franchise API",
+		"description": "Colección de pruebas para la API de Franquicias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12242546"
+	},
+	"item": [
+		{
+			"name": "Franquicias",
+			"item": [
+				{
+					"name": "Crear Franquicia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mi Franquicia\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/franchises",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Franquicia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/franchises/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Franquicia",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Mi Franquicia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/franchises/1/name",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises",
+								"1",
+								"name"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sucursales",
+			"item": [
+				{
+					"name": "Crear Sucursal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Sucursal Centro\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/franchises/1/branches",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises",
+								"1",
+								"branches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Sucursal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/franchises/1/branches/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises",
+								"1",
+								"branches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Crear Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Laptop\",\n  \"stock\": 150\n}"
+						},
+						"url": {
+							"raw": "{{host}}/branches/1/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"branches",
+								"1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/branches/1/products/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"branches",
+								"1",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"stock\": 120\n}"
+						},
+						"url": {
+							"raw": "{{host}}/branches/1/products/1/stock",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"branches",
+								"1",
+								"products",
+								"1",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/branches/1/products/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"branches",
+								"1",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "Productos con Mayor Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/franchises/1/reports/max-stock-products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"franchises",
+								"1",
+								"reports",
+								"max-stock-products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/status",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
