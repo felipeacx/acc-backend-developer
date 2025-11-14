@@ -23,12 +23,11 @@ EXPOSE 8080
 
 # Variables de entorno por defecto
 ENV SPRING_PROFILES_ACTIVE=local
-ENV DB_HOST=postgres
-ENV DB_PORT=5432
-ENV DB_NAME=franchise_db
-ENV DB_USERNAME=postgres
-ENV DB_PASSWORD=postgres
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/franchise_db
+ENV SPRING_DATASOURCE_USERNAME=postgres
+ENV SPRING_DATASOURCE_PASSWORD=postgres
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 # Comando de inicio
-ENTRYPOINT ["java", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
