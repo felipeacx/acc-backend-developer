@@ -6,6 +6,7 @@ import com.franchise.api.dto.CreateProductRequest;
 import com.franchise.api.dto.ProductResponse;
 import com.franchise.api.dto.ProductWithBranchResponse;
 import com.franchise.api.dto.UpdateStockRequest;
+import com.franchise.api.dto.UpdateProductNameRequest;
 import com.franchise.api.repository.BranchRepository;
 import com.franchise.api.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +32,7 @@ public class ProductService {
      */
     public ProductResponse createProduct(Long branchId, CreateProductRequest request) {
         Branch branch = branchRepository.findById(branchId)
-                .orElseThrow(() -> new RuntimeException("Sucursal no encontrada: " + branchId));
+                .orElseThrow(() -> new NoSuchElementException("Sucursal no encontrada: " + branchId));
 
         Product product = Product.builder()
                 .name(request.getName())
@@ -46,7 +48,7 @@ public class ProductService {
      */
     public ProductResponse getProductById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + productId));
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado: " + productId));
         return mapToResponse(product);
     }
 
@@ -55,7 +57,7 @@ public class ProductService {
      */
     public Product getProductByIdAndBranchId(Long productId, Long branchId) {
         return productRepository.findByIdAndBranchId(productId, branchId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado en la sucursal especificada"));
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado en la sucursal especificada"));
     }
 
     /**
@@ -63,7 +65,7 @@ public class ProductService {
      */
     public void deleteProduct(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + productId));
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado: " + productId));
         productRepository.delete(product);
     }
 
@@ -72,9 +74,22 @@ public class ProductService {
      */
     public ProductResponse updateProductStock(Long productId, UpdateStockRequest request) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + productId));
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado: " + productId));
         product.setStock(request.getStock());
         product = productRepository.save(product);
+        return mapToResponse(product);
+    }
+
+    /**
+     * Actualiza el nombre de un producto
+     */
+    public ProductResponse updateProductName(Long branchId, Long productId, UpdateProductNameRequest request) {
+        Product product = productRepository.findByIdAndBranchId(productId, branchId)
+                .orElseThrow(() -> new NoSuchElementException("Producto no encontrado en la sucursal especificada"));
+
+        product.setName(request.getName());
+        product = productRepository.save(product);
+
         return mapToResponse(product);
     }
 
@@ -109,3 +124,4 @@ public class ProductService {
                 .build();
     }
 }
+

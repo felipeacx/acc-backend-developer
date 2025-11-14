@@ -8,14 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * DTO para crear una nueva Franquicia
+ * DTO para actualizar el nombre de una Sucursal
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateFranchiseRequest {
-    @NotBlank(message = "El nombre de la franquicia no puede estar vacío")
+public class UpdateBranchNameRequest {
+    @NotBlank(message = "El nombre de la sucursal no puede estar vacío")
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
     private String name;
 }
+
