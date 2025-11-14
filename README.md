@@ -1,13 +1,23 @@
 # Franchise API
 
-API REST para gestionar franquicias, sucursales y productos.
+Prueba técnica API REST para gestionar franquicias, sucursales y productos.
 
 ## Requisitos
 
-- Docker
-- Docker Compose
 - Java
-- Spring Boot
+- Docker
+
+## Colección Postman
+
+Archivo API.postman_collection.json
+
+## Despliegue en Producción
+
+- URL de la API en producción: [API](https://backend-developer-gdh2frajfdezhpgm.centralus-01.azurewebsites.net/api/)
+- Estado de la API en
+  producción: [Estado](https://backend-developer-gdh2frajfdezhpgm.centralus-01.azurewebsites.net/api/status)
+- Documentación de la API en
+  producción: [Documentación](https://backend-developer-gdh2frajfdezhpgm.centralus-01.azurewebsites.net/api/swagger-ui/index.html)
 
 ## Despliegue Local con Docker
 
@@ -26,6 +36,7 @@ docker-compose up --build
 ```
 
 Este comando hará lo siguiente:
+
 - Descargará las imágenes necesarias
 - Compilará la aplicación
 - Levantará una base de datos PostgreSQL
@@ -58,35 +69,41 @@ docker-compose down
 
 ### Endpoints principales
 
+- **Status**
+    - GET /api/status - Verificar estado de la API
+
 - **Franquicias**
-  - POST /api/franchises - Crear franquicia
-  - GET /api/franchises/{id} - Obtener franquicia
-  - PATCH /api/franchises/{id}/name - Actualizar nombre (plus)
+    - POST /api/franchises - Crear franquicia
+    - GET /api/franchises/{id} - Obtener franquicia
+    - PATCH /api/franchises/{id}/name - Actualizar nombre (plus)
 
 - **Sucursales**
-  - POST /api/franchises/{franchiseId}/branches - Crear sucursal
-  - GET /api/franchises/{franchiseId}/branches/{branchId} - Obtener sucursal
-  - PATCH /api/franchises/{franchiseId}/branches/{branchId}/name - Actualizar nombre (plus)
+    - POST /api/franchises/{franchiseId}/branches - Crear sucursal
+    - GET /api/franchises/{franchiseId}/branches/{branchId} - Obtener sucursal
+    - PATCH /api/franchises/{franchiseId}/branches/{branchId}/name - Actualizar nombre (plus)
 
 - **Productos**
-  - POST /api/branches/{branchId}/products - Crear producto
-  - GET /api/branches/{branchId}/products/{productId} - Obtener producto
-  - PATCH /api/branches/{branchId}/products/{productId}/stock - Actualizar stock (plus)
-  - DELETE /api/branches/{branchId}/products/{productId} - Eliminar producto
+    - POST /api/branches/{branchId}/products - Crear producto
+    - GET /api/branches/{branchId}/products/{productId} - Obtener producto
+    - PATCH /api/branches/{branchId}/products/{productId}/stock - Actualizar stock (plus)
+    - DELETE /api/branches/{branchId}/products/{productId} - Eliminar producto
 
 - **Reportes**
-  - GET /api/franchises/{franchiseId}/reports/max-stock-products - Productos con mayor stock por sucursal
+    - GET /api/franchises/{franchiseId}/reports/max-stock-products - Productos con mayor stock por sucursal
 
 ## Configuración de la base de datos
 
 La base de datos PostgreSQL se configura automáticamente con:
+
 - Usuario: postgres
 - Contraseña: postgres
 - Base de datos: franchise_db
 - Puerto: 5432
 
-
 ## Notas
 
 - La aplicación crea automáticamente las tablas al iniciar
 - El servidor está accesible en el puerto 8080
+- Servicio desplegado en Azure App Service
+- Documentación generada con Swagger
+- Configuración local con Docker Compose
